@@ -99,7 +99,7 @@ data "aws_iam_policy_document" "policy" {
       resources = ["arn:aws:s3:::${var.bucket_name}"]
       condition {
         test = "StringNotEquals"
-        values = concat(["arn:aws:iam::${local.account_id}:role/IAGAdmin", "arn:aws:iam::${local.account_id}:role/IAG_Gitlab_Role", "arn:aws:iam::${local.account_id}:role/IAGPowerUser"],
+        values = concat(["arn:aws:iam::${local.account_id}:role/IAGAdmin", "arn:aws:iam::${local.account_id}:role/github-oidc-stafftravel-role", "arn:aws:iam::${local.account_id}:role/IAGPowerUser"],
           [for list_permission in var.bucket_policy.iam_role_list_permission : "arn:aws:iam::${local.account_id}:role/${list_permission}"],[for new-user in var.bucket_policy.iam_user_list_permission : "arn:aws:iam::${local.account_id}:user/${new-user}"],
         local.isSFTPAvailable ? ["arn:aws:iam::${var.sftp_server_accountid}:role/${var.sftp_user_iam_role}"] : [])
         variable = "aws:PrincipalArn"
@@ -150,7 +150,7 @@ data "aws_iam_policy_document" "policy" {
       condition {
         test = "StringNotEquals"
         values = concat([for write_permission in var.bucket_policy.iam_role_write_permission : "arn:aws:iam::${local.account_id}:role/${write_permission}"],[for new-user in var.bucket_policy.iam_user_write_permission : "arn:aws:iam::${local.account_id}:user/${new-user}"],
-          local.isSFTPAvailable ? ["arn:aws:iam::${var.sftp_server_accountid}:role/${var.sftp_user_iam_role}"] : [], ["arn:aws:iam::${local.account_id}:role/IAGAdmin", "arn:aws:iam::${local.account_id}:role/IAG_Gitlab_Role"])
+          local.isSFTPAvailable ? ["arn:aws:iam::${var.sftp_server_accountid}:role/${var.sftp_user_iam_role}"] : [], ["arn:aws:iam::${local.account_id}:role/IAGAdmin", "arn:aws:iam::${local.account_id}:role/github-oidc-stafftravel-role"])
         variable = "aws:PrincipalArn"
       }
     }
@@ -171,7 +171,7 @@ data "aws_iam_policy_document" "policy" {
         test = "StringNotEquals"
         values = concat([for delete_permission in var.bucket_policy.iam_role_delete_permission : "arn:aws:iam::${local.account_id}:role/${delete_permission}"],[for new-user in var.bucket_policy.iam_user_delete_permission : "arn:aws:iam::${local.account_id}:user/${new-user}"],[
           "arn:aws:iam::${local.account_id}:role/IAGAdmin",
-          "arn:aws:iam::${local.account_id}:role/IAG_Gitlab_Role"
+          "arn:aws:iam::${local.account_id}:role/github-oidc-stafftravel-role"
         ])
         variable = "aws:PrincipalArn"
       }
@@ -237,7 +237,7 @@ data "aws_iam_policy_document" "policy" {
         values = concat([for other_bucket_permission in var.other_bucket_permission_role : "arn:aws:iam::${local.account_id}:role/${other_bucket_permission}"],
         [for sftp_other_bucket_permission in var.sftp_other_bucket_permission_role : "arn:aws:iam::${var.sftp_server_accountid}:role/${sftp_other_bucket_permission}"],
         ["arn:aws:iam::${local.account_id}:role/IAGAdmin",
-          "arn:aws:iam::${local.account_id}:role/IAG_Gitlab_Role"
+          "arn:aws:iam::${local.account_id}:role/github-oidc-stafftravel-role"
         ])
         variable = "aws:PrincipalArn"
       }
@@ -269,7 +269,7 @@ data "aws_iam_policy_document" "policy" {
       condition {
         test = "StringNotEquals"
         values = concat(["arn:aws:iam::${local.account_id}:role/IAGAdmin",
-          "arn:aws:iam::${local.account_id}:role/IAG_Gitlab_Role"
+          "arn:aws:iam::${local.account_id}:role/github-oidc-stafftravel-role"
           ])
         variable = "aws:PrincipalArn"
       }
