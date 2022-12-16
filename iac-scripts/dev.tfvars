@@ -2,7 +2,7 @@
 ###           s3                   ###
 ######################################
 s3 = [{
-  bucket_name        = "demo_s3_bucket"
+  bucket_name        = "demo-s3234-bucket"
   versioning_enabled = false
   encryption_enabled = true
   lifecycle_rules    = []
