@@ -1,5 +1,5 @@
 module "email-archive-s3" {
-  source                 = "modules/s3"
+  source                 = "./modules/s3"
   count                  = length(var.s3)
   bucket_name            = var.s3[count.index].bucket_name
   versioning_enabled     = var.s3[count.index].versioning_enabled
