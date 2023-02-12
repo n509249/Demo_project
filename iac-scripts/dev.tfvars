@@ -4,7 +4,7 @@
 s3 = [{
   bucket_name        = "demo-s32"
   versioning_enabled = true
-  encryption_enabled = true
+  encryption_enabled = false.
   lifecycle_rules    = []
   s3_tags            = {}
   bucket_policy = {
