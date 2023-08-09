@@ -2,7 +2,7 @@ name: Mirror GitLab to GitHub
 on:
   push:
     branches:
-      - feature  # Adjust the branch name as needed
+      - feature
 
 jobs:
   mirror:
@@ -12,7 +12,7 @@ jobs:
       - name: Create GitHub repository
         uses: actions/github-script@v4
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.HUB_TOKEN }}
           script: |
             PAT="YOUR_GITHUB_PERSONAL_ACCESS_TOKEN"
             REPO_NAME="POC-repo"
@@ -21,12 +21,3 @@ jobs:
                        -d "{\"name\":\"$REPO_NAME\","private":false}" "https://api.github.com/user/repos")
           
             echo $response
-            
-    #  - name: Mirror to GitHub repository
-      #  run: |
-       #   cd poc-dummy-interface.git
-        #  git push --mirror https://github.com/n509249/new-github-repo.git
-         # cd ..
-          #rm -rf poc-dummy-interface.git
-        #env:
-         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
