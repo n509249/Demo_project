@@ -16,12 +16,12 @@ jobs:
         run: |
           git clone --bare --branch main https://gitlab.com/iairgroup/ba/customer/crm-connections/poc/poc-dummy-interface.git
         env:
-          GITLAB_TOKEN: glpat-mZKtysyyNjz3K1inJ_SN
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
 
       - name: Create GitHub repository
         uses: actions/github-script@v4
         with:
-          github-token: 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
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const repoName = "new-github-repo";  // Adjust the repository name
             const response = await octokit.repos.createForAuthenticatedUser({
@@ -36,4 +36,4 @@ jobs:
           cd ..
           rm -rf poc-dummy-interface.git
         env:
-          GITHUB_TOKEN: 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
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
