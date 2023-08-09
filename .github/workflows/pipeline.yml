@@ -9,31 +9,24 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
-      - name: Clone GitLab project
-        run: |
-          git clone --bare --branch main https://gitlab.com/iairgroup/ba/customer/crm-connections/poc/poc-dummy-interface.git
-        env:
-          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
-
       - name: Create GitHub repository
         uses: actions/github-script@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const repoName = "new-github-repo";  // Adjust the repository name
-            const response = await octokit.repos.createForAuthenticatedUser({
-              name: repoName,
-            });
-            console.log(response.data);
+            PAT="YOUR_GITHUB_PERSONAL_ACCESS_TOKEN"
+            REPO_NAME="POC"
+            #ORG_NAME="your-username"           
+            response=$(curl -X POST -H "Authorization: token $PAT" -H "Accept: application/vnd.github.v3+json" \
+                       -d "{\"name\":\"$REPO_NAME\","private":false}" "https://api.github.com/user/repos")
+          
+            echo $response
             
-      - name: Mirror to GitHub repository
-        run: |
-          cd poc-dummy-interface.git
-          git push --mirror https://github.com/n509249/new-github-repo.git
-          cd ..
-          rm -rf poc-dummy-interface.git
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #  - name: Mirror to GitHub repository
+      #  run: |
+       #   cd poc-dummy-interface.git
+        #  git push --mirror https://github.com/n509249/new-github-repo.git
+         # cd ..
+          #rm -rf poc-dummy-interface.git
+        #env:
+         # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
