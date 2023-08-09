@@ -1,23 +1,25 @@
-name: Mirror GitLab to GitHub
+name: Create GitHub Repository
+
 on:
   push:
     branches:
-      - feature
+      - main
 
 jobs:
-  mirror:
+  create_repo_job:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
       - name: Create GitHub repository
-        uses: actions/github-script@v4
-        with:
-          github-token: ${{ secrets.HUB_TOKEN }}
-          script: |
-            PAT="YOUR_GITHUB_PERSONAL_ACCESS_TOKEN"
-            REPO_NAME="POC-repo"
-            ORG_NAME="n509249"           
-            response=$(curl -X POST -H "Authorization: token $PAT" -H "Accept: application/vnd.github.v3+json" \
-                       -d "{\"name\":\"$REPO_NAME\","private":false}" "https://api.github.com/user/repos")
+        run: |
+          PAT= ${{ secrets.HUB_PERSONAL_ACCESS_TOKEN }}
+          REPO_NAME="new-repo-poc"
+          ORG_NAME="n509249"
           
-            echo $response
+          response=$(curl -X POST -H "Authorization: token $PAT" -H "Accept: application/vnd.github.v3+json" \
+                       -d "{\"name\":\"$REPO_NAME\"}" "https://api.github.com/user/repos")
+          
+          echo $response
