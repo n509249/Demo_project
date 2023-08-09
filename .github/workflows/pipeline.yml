@@ -15,10 +15,10 @@ jobs:
         
       - name: Create GitHub repository
         run: |
-          PAT= ${{ secrets.HUB_PERSONAL_ACCESS_TOKEN }}
-          REPO_NAME="new-repo-poc"
-          ORG_NAME="n509249"
+          #PAT= ${{ secrets.HUB_PERSONAL_ACCESS_TOKEN }}
+          #REPO_NAME="new-repo-poc"
+          #ORG_NAME="n509249"
           
-          response=$(curl -X POST -H "Authorization: token $PAT" -H "Accept: application/vnd.github.v3+json" \ -d "{\"name\":\"$REPO_NAME\"}" "https://api.github.com/user/repos")
+          response=$(curl -X POST   -H "Authorization: Bearer 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"   -H "Accept: application/vnd.github.v3+json"   -d '{"name": "new-repo-name", "private": false}'   https://api.github.com/user/repos)
           
           echo $response
