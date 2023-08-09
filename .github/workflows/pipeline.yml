@@ -3,7 +3,7 @@ name: Create GitHub Repository
 on:
   push:
     branches:
-      - main
+      - feature
 
 jobs:
   create_repo_job:
