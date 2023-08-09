@@ -19,7 +19,6 @@ jobs:
           REPO_NAME="new-repo-poc"
           ORG_NAME="n509249"
           
-          response=$(curl -X POST -H "Authorization: token $PAT" -H "Accept: application/vnd.github.v3+json" \
-                       -d "{\"name\":\"$REPO_NAME\"}" "https://api.github.com/user/repos")
+          response=$(curl -X POST -H "Authorization: token $PAT" -H "Accept: application/vnd.github.v3+json" \ -d "{\"name\":\"$REPO_NAME\"}" "https://api.github.com/user/repos")
           
           echo $response
