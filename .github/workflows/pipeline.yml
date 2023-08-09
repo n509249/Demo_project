@@ -1,0 +1,39 @@
+name: Mirror GitLab to GitHub
+on:
+  push:
+    branches:
+      - feature  # Adjust the branch name as needed
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        
+      - name: Clone GitLab project
+        run: |
+          git clone --bare --branch main https://gitlab.com/iairgroup/ba/customer/crm-connections/poc/poc-dummy-interface.git
+        env:
+          GITLAB_TOKEN: glpat-mZKtysyyNjz3K1inJ_SN
+
+      - name: Create GitHub repository
+        uses: actions/github-script@v4
+        with:
+          github-token: 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
+          script: |
+            const repoName = "new-github-repo";  // Adjust the repository name
+            const response = await octokit.repos.createForAuthenticatedUser({
+              name: repoName,
+            });
+            console.log(response.data);
+            
+      - name: Mirror to GitHub repository
+        run: |
+          cd poc-dummy-interface.git
+          git push --mirror https://github.com/n509249/new-github-repo.git
+          cd ..
+          rm -rf poc-dummy-interface.git
+        env:
+          GITHUB_TOKEN: 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
