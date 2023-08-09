@@ -15,10 +15,6 @@ jobs:
         
       - name: Create GitHub repository
         run: |
-          token= ${{ secrets.HUB_PERSONAL_ACCESS_TOKEN }}
-          #REPO_NAME="new-repo-poc"
-          #ORG_NAME="n509249"
-          
-          response=$(curl -X POST   -H "Authorization: Bearer $token"   -H "Accept: application/vnd.github.v3+json"   -d '{"name": "new-repo-name", "private": false}'   https://api.github.com/user/repos)
-          
-          echo $response
+          token="${{ secrets.HUB_PERSONAL_ACCESS_TOKEN }}"
+          response=$(curl -X POST -H "Authorization: Bearer $token" -H "Accept: application/vnd.github.v3+json" -d '{"name": "new-repo-name", "private": false}' https://api.github.com/user/repos)
+          echo "$response"
