@@ -1,6 +1,7 @@
 name: Create GitHub Repository
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - feature
