@@ -16,14 +16,15 @@ jobs:
       - name: Create GitHub repository
         run: |
           file="project_name.txt"
-          while read project_name; do
+          file1="project_url.txt"
+          while read project_name && read project_url; do
           token="${{ secrets.HUB_PERSONAL_ACCESS_TOKEN }}"
           token1="${{ secrets.GITLAB_TOKEN }}"
           response=$(curl -X POST -H "Authorization: Bearer $token" -H "Accept: application/vnd.github.v3+json" -d '{"name": "'"$project_name"'", "private": true}' https://api.github.com/user/repos)
           echo "$response"
-          git clone --bare https://oauth2:$token1@gitlab.com/iairgroup/ba/customer/crm-connections/poc/poc-dummy-interface.git
+          git clone --bare https://oauth2:$token1@gitlab.com/$project_url.git
           cd poc-dummy-interface.git
           git push --mirror https://oauth2:$token@github.com/n509249/$project_name.git
           cd ..
           rm -rf poc-dummy-interface.git
-          done < $file
+          done < $file <$file1
