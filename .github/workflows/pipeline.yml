@@ -27,4 +27,4 @@ jobs:
           git push --mirror https://oauth2:$token@github.com/n509249/$project_name.git
           cd ..
           rm -rf poc-dummy-interface.git
-          done 3<file1.txt <file.txt
+          done 3<file1 <file
