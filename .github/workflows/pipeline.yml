@@ -15,8 +15,8 @@ jobs:
         
       - name: Create GitHub repository
         run: |
-          file="project_name.txt"
-          file1="project_url.txt"
+          #file="project_name.txt"
+          #file1="project_url.txt"
           while IFS= read -r project_name && IFS= read -r project_url <&3; do
           token="${{ secrets.HUB_PERSONAL_ACCESS_TOKEN }}"
           token1="${{ secrets.GITLAB_TOKEN }}"
@@ -27,4 +27,4 @@ jobs:
           git push --mirror https://oauth2:$token@github.com/n509249/$project_name.git
           cd ..
           rm -rf poc-dummy-interface.git
-          done 3<file1 <file
+          done 3<project_url.txt <project_name.txt
