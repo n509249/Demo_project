@@ -1,2 +1,2 @@
-new_repo_name
-POC_repo
+poc-dummy-interface
+inline-policy_poc
