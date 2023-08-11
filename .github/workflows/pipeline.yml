@@ -19,7 +19,6 @@ jobs:
           token1="${{ secrets.GITLAB_TOKEN }}"
           response=$(curl -X POST -H "Authorization: Bearer $token" -H "Accept: application/vnd.github.v3+json" -d '{"name": "new-repo-name", "private": true}' https://api.github.com/user/repos)
           echo "$response"
-          git config --global credential.helper store
           git clone --bare https://oauth2:$token1@gitlab.com/iairgroup/ba/customer/crm-connections/poc/poc-dummy-interface.git
           cd poc-dummy-interface.git
           git push --mirror https://oauth2:$token@github.com/n509249/new-repo-name.git
