@@ -22,6 +22,6 @@ jobs:
           git config --global credential.helper store
           git clone --bare https://oauth2:$token1@gitlab.com/iairgroup/ba/customer/crm-connections/poc/poc-dummy-interface.git
           cd poc-dummy-interface.git
-          git push --mirror https://github.com/n509249/new-repo-name.git
+          git push --mirror https://oauth2:$token@github.com/n509249/new-repo-name.git
           cd ..
           rm -rf poc-dummy-interface.git
