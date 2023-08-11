@@ -19,7 +19,7 @@ jobs:
           while read project_name; do
           token="${{ secrets.HUB_PERSONAL_ACCESS_TOKEN }}"
           token1="${{ secrets.GITLAB_TOKEN }}"
-          response=$(curl -X POST -H "Authorization: Bearer $token" -H "Accept: application/vnd.github.v3+json" -d '{"name": "$project_name", "private": true}' https://api.github.com/user/repos)
+          response=$(curl -X POST -H "Authorization: Bearer $token" -H "Accept: application/vnd.github.v3+json" -d '{"name": $project_name, "private": true}' https://api.github.com/user/repos)
           echo "$response"
           git clone --bare https://oauth2:$token1@gitlab.com/iairgroup/ba/customer/crm-connections/poc/poc-dummy-interface.git
           cd poc-dummy-interface.git
