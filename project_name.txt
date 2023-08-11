@@ -1,4 +1,2 @@
 new_repo_name
-iairgroup/ba/customer/crm-connections/poc/poc-dummy-interface
 POC_repo
-iairgroup/ba/customer/crm-connections/poc/poc-dummy-interface
