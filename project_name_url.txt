@@ -1,0 +1,2 @@
+poc-dummy-interface iairgroup/ba/customer/crm-connections/poc
+inline-policy_poc iairgroup/ba/customer/crm-connections/poc
