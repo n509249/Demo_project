@@ -15,7 +15,7 @@ env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
 jobs:
   deploy:
-    if: github.ref == 'refs/heads/feature ' && github.event_name == 'push'
+    if: startsWith(github.ref, 'refs/heads/feature')
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -55,7 +55,7 @@ jobs:
       run:
         shell: bash
         working-directory: .
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    if: startsWith(github.ref, 'refs/heads/main')
     steps:
       - name: Terraform Init
         id: init
