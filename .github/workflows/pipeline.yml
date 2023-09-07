@@ -20,8 +20,8 @@ jobs:
           while IFS=' ' read -r project_name project_id; do
           token="${{ secrets.HUB_PERSONAL_ACCESS_TOKEN }}"
           token1="${{ secrets.GITLAB_TOKEN }}"
-          response=$(curl -X POST -H "Authorization: Bearer $token" -H "Accept: application/vnd.github.v3+json" -d '{"name": "'"$project_name"'", "private": false}' https://api.github.com/user/repos)
-          response_code=$(curl -X POST -H "Authorization: Bearer $token1" --request POST --header "Content-Type:application/json" --data '{"url":"https://n509249:'"$token"'@github.com/n509249/'"$project_name"'.git","enabled": true}'  "https://gitlab.com/api/v4/projects/$projectid/remote_mirrors")
+         # response=$(curl -X POST -H "Authorization: Bearer $token" -H "Accept: application/vnd.github.v3+json" -d '{"name": "'"$project_name"'", "private": false}' https://api.github.com/user/repos)
+          response_code=$(curl -X POST -H "Authorization: Bearer $token1" --request POST --header "Content-Type:application/json" --data '{"url":"https://n509249:'"$token"'@github.com/n509249/'"$project_name"'.git","enabled": true}'  https://gitlab.com/api/v4/projects/$projectid/remote_mirrors)
           echo "$response"
           #git clone --bare https://oauth2:$token1@gitlab.com/$project_url/$project_name.git
           #cd $project_name.git
