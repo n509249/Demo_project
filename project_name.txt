@@ -1,2 +1,0 @@
-poc-dummy-interface
-inline-policy_poc
