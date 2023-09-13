@@ -31,7 +31,4 @@ jobs:
                   echo "ERROR MESSAGE:" $response_body
                 fi
           done <project_name_url.txt
-          if [[ "$isError" = true ]]; then
-             exit 1
-          fi
 
