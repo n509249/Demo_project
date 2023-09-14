@@ -1,2 +1,2 @@
-poc-dummy-interface1 32754322
+poc-dummy-interface 32754322
 inline-policy_poc 46130706
